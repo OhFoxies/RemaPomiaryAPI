@@ -1,0 +1,25 @@
+from sqlalchemy import create_engine
+from sqlalchemy.orm import DeclarativeBase, sessionmaker, declarative_base
+
+DATABASE_URL =  "postgresql+psycopg://postgres:Wzium123@localhost:5432/remapomiary"
+
+engine = create_engine(DATABASE_URL, echo=True)
+
+SessionLocal = sessionmaker(
+    autoflush=False,
+    autocommit=False,
+    bind=engine
+)
+
+
+def get_db():
+    db = SessionLocal()
+
+    try:
+        yield db
+    finally:
+        db.close()
+
+class Base(DeclarativeBase):
+    ...
+

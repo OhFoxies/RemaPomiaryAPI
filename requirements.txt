@@ -1,0 +1,3 @@
+pyjwt
+sqlalchemy
+fastapi~=0.165.0
